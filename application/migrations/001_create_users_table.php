@@ -27,16 +27,34 @@ class Migration_Create_users_table extends CI_Migration
             'phone' => [
                 'type' => 'VARCHAR',
                 'constraint' => '15',
-                'null' => TRUE,
             ],
-            'address' => [
-                'type' => 'TEXT',
-                'null' => TRUE,
+            'street_address' => [
+                'type' => 'VARCHAR',
+                'constraint' => '255',
+            ],
+            'street_number' => [
+                'type' => 'VARCHAR',
+                'constraint' => '10',
+            ],
+            'city' => [
+                'type' => 'VARCHAR',
+                'constraint' => '100',
+            ],
+            'state' => [
+                'type' => 'VARCHAR',
+                'constraint' => '100',
+            ],
+            'postal_code' => [
+                'type' => 'VARCHAR',
+                'constraint' => '20',
+            ],
+            'country' => [
+                'type' => 'VARCHAR',
+                'constraint' => '100',
             ],
             'job_status' => [
                 'type' => 'VARCHAR',
                 'constraint' => '100',
-                'null' => TRUE,
             ],
             'logged_at' => [
                 'type' => 'DATETIME',
@@ -53,6 +71,10 @@ class Migration_Create_users_table extends CI_Migration
         // Ajout des index
         $this->db->query('CREATE INDEX idx_logged_at ON users(logged_at)');
         $this->db->query('CREATE INDEX idx_email ON users(email)');
+        $this->db->query('CREATE INDEX idx_city ON users(city)');
+        $this->db->query('CREATE INDEX idx_state ON users(state)');
+        $this->db->query('CREATE INDEX idx_postal_code ON users(postal_code)');
+        $this->db->query('CREATE INDEX idx_country ON users(country)');
         $this->db->query('CREATE INDEX idx_phone ON users(phone)');
     }
 
