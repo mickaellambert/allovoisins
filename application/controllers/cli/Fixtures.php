@@ -3,14 +3,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 require_once APPPATH . '../vendor/autoload.php';
 
-class Fixtures extends CI_Controller {
+class Fixtures extends CI_Controller 
+{
+    public const NB_USERS = 100;
 
-    public function __construct() {
+    public function __construct() 
+    {
         parent::__construct();
         $this->load->database();
     }
 
-    public function index($count = 100) {
+    public function index(int $count = self::NB_USERS)
+    {
         $faker = Faker\Factory::create();
 
         for ($i = 0; $i < $count; $i++) {

@@ -21,9 +21,13 @@ class UserFront extends User
             $this->output
                 ->set_status_header(HttpStatus::CREATED)
                 ->set_content_type('application/json')
-                ->set_output(json_encode(['status' => 'User created']));
-        } else {
-            $this->error(validation_errors(), HttpStatus::BAD_REQUEST);
+                ->set_output(json_encode([
+                    'status' => 'OK',
+                    'result' => 'User created.'
+                ]));
+        } 
+        else {
+            $this->error(strip_tags(validation_errors()), HttpStatus::BAD_REQUEST);
         }
     }
 }

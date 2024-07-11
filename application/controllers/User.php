@@ -11,7 +11,7 @@ class User extends CI_Controller
         $this->load->library(['form_validation', 'HttpStatus']);
     }
 
-    public function update($id)
+    public function update(int $id)
     {
         $data = json_decode($this->input->raw_input_stream, true);
         
@@ -20,13 +20,16 @@ class User extends CI_Controller
 
             $this->output->set_status_header(HttpStatus::OK)
                          ->set_content_type('application/json')
-                         ->set_output(json_encode(['result' => 'User updated']));
+                         ->set_output(json_encode([
+                            'status' => 'OK',
+                            'result' => 'User updated.'
+                        ]));
         } else {
-            $this->error(validation_errors(), HttpStatus::BAD_REQUEST);
+            $this->error(strip_tags(validation_errors()), HttpStatus::BAD_REQUEST);
         }
     }
 
-    protected function validate($data, $update = false)
+    protected function validate(array $data, bool $update = false)
     {
         $rules = [
             'first_name' => 'max_length[100]',
@@ -43,9 +46,11 @@ class User extends CI_Controller
         ];
 
         if (!$update) {
-            $rules = array_map(function($rule) {
-                return 'required|' . $rule;
-            }, $rules);
+            foreach ($rules as $field => $rule) {
+                if (!in_array($field, UserModel::OPTIONAL_FIELDS)) {
+                    $rules[$field] = 'required|' . $rule;
+                }
+            }
         }
 
         $this->form_validation->set_data($data);
@@ -57,7 +62,7 @@ class User extends CI_Controller
         return $this->form_validation->run();
     }
     
-    public function error($message, $status_code = HttpStatus::BAD_REQUEST)
+    public function error(string $message, int $status_code = HttpStatus::BAD_REQUEST)
     {
         $this->output->set_status_header($status_code)
                      ->set_content_type('application/json')
