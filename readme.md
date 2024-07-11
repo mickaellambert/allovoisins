@@ -49,3 +49,11 @@ Afin de faciliter l'utilisation et le test de l'application, des fausses donnée
 ```sh
 php index.php cli/fixtures
 ```
+
+### 7. Supprimer tous les utilisateurs inactifs depuis 36 mois
+
+Pensez à ajouter au crontab de votre serveur cette ligne (ne pas oublier de remplacer le chemin du projet par le votre) :
+
+```sh
+0 0 * * * /usr/bin/php /path/to/project/crons/delete_inactive_users.php
+```
