@@ -30,6 +30,25 @@ class UserBack extends User
         } else {
             $this->error(strip_tags(validation_errors()));
         }
+    }
+
+    public function delete($id) 
+    {
+        if (!is_numeric($id)) {
+            $this->error('Invalid User ID', HttpStatus::BAD_REQUEST);
+            return;
+        }
+
+        if (!$this->UserModel->selectOne($id)) {
+            $this->error('Not existing User', HttpStatus::NOT_FOUND);
+            return;
+        }
         
+        $this->UserModel->delete($id);
+
+        $this->output->set_status_header(HttpStatus::OK)
+                     ->set_content_type('application/json')
+                     ->set_output(json_encode(['result' => 'User deleted']));
+
     }
 }

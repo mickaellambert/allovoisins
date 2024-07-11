@@ -55,3 +55,4 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['api/back/users']['get'] = 'UserBack/index';
 $route['api/back/users/(:num)']['put'] = 'User/update/$1';
+$route['api/back/users/(:num)']['delete'] = 'UserBack/delete/$1';
