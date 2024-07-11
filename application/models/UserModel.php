@@ -39,4 +39,14 @@ class UserModel extends CI_Model
         $this->db->where('id', $id);
         return $this->db->delete('users');
     }
+
+    public function deleteInactives($months)
+    {
+        $date = date('Y-m-d H:i:s', strtotime("-$months months"));
+        
+        $this->db->where('logged_at <', $date);
+        $this->db->delete('users');
+        
+        return $this->db->affected_rows();
+    }
 }
