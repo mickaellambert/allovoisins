@@ -4,43 +4,45 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class UserModel extends CI_Model
 {
+    public const OPTIONAL_FIELDS = ['state', 'job_status'];
+
     public function __construct()
     {
         parent::__construct();
         $this->load->database();
     }
 
-    public function selectAll($limit, $offset)
+    public function selectAll(int $limit, int $offset)
     {
         $this->db->limit($limit, $offset);
         $query = $this->db->get('users');
         return $query->result_array();
     }
 
-    public function selectOne($id)
+    public function selectOne(int $id)
     {
         $query = $this->db->get_where('users', ['id' => $id]);
         return $query->row_array();
     }
 
-    public function insert($data)
+    public function insert(array $data)
     {
         return $this->db->insert('users', $data);
     }
 
-    public function update($id, $data)
+    public function update(int $id, array $data)
     {
         $this->db->where('id', $id);
         return $this->db->update('users', $data);
     }
 
-    public function delete($id)
+    public function delete(int $id)
     {
         $this->db->where('id', $id);
         return $this->db->delete('users');
     }
 
-    public function deleteInactives($months)
+    public function deleteInactives(int $months)
     {
         $date = date('Y-m-d H:i:s', strtotime("-$months months"));
         

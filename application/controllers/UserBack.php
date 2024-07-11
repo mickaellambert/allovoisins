@@ -32,15 +32,15 @@ class UserBack extends User
         }
     }
 
-    public function delete($id) 
+    public function delete(int $id) 
     {
         if (!is_numeric($id)) {
-            $this->error('Invalid User ID', HttpStatus::BAD_REQUEST);
+            $this->error('Invalid user ID.', HttpStatus::BAD_REQUEST);
             return;
         }
 
         if (!$this->UserModel->selectOne($id)) {
-            $this->error('Not existing User', HttpStatus::NOT_FOUND);
+            $this->error('Not existing user.', HttpStatus::NOT_FOUND);
             return;
         }
         
@@ -48,7 +48,10 @@ class UserBack extends User
 
         $this->output->set_status_header(HttpStatus::OK)
                      ->set_content_type('application/json')
-                     ->set_output(json_encode(['result' => 'User deleted']));
+                     ->set_output(json_encode([
+                        'status' => 'OK',
+                        'result' => 'User deleted.'
+                    ]));
 
     }
 }

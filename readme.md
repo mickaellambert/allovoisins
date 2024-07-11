@@ -57,3 +57,13 @@ Pensez à ajouter au crontab de votre serveur cette ligne (ne pas oublier de rem
 ```sh
 0 0 * * * /usr/bin/php /path/to/project/crons/delete_inactive_users.php
 ```
+
+## Ressources
+
+### 1. Documentation en ligne
+
+Vous pouvez trouver une documentation de cette API à cette adresse : https://documenter.getpostman.com/view/4737023/2sA3e5cSye
+
+### 2. Collection Postman
+
+Enfin, vous avez de disponible directement dans le répertoire du projet la collection Postman associée (`api.postman_collection.json`)
