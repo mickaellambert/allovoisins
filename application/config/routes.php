@@ -54,3 +54,4 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['api/back/users']['get'] = 'UserBack/index';
+$route['api/back/users/(:num)']['put'] = 'User/update/$1';
