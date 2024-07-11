@@ -15,7 +15,7 @@ Ce projet utilise CodeIgniter 3 avec des migrations pour gérer la base de donn�
 Clonez le dépôt sur votre machine locale :
 
 ```sh
-git clone https://votre-depot-git/projet-codeigniter.git
+git clone git@github.com:mickaellambert/allovoisins.git
 cd projet-codeigniter
 ```
 
