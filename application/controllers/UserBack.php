@@ -13,13 +13,23 @@ class UserBack extends User
 
     public function index()
     {
-        $limit = $this->input->get('limit') ?: 10;
-        $offset = $this->input->get('offset') ?: 0;
+        $limit = $this->input->get('limit');
+        $offset = $this->input->get('offset');
 
-        $data['users'] = $this->UserModel->selectAll($limit, $offset);
+        $this->form_validation->set_data(['limit' => $limit, 'offset' => $offset]);
+        $this->form_validation->set_rules('limit', 'Limit', 'required|integer|greater_than[0]');
+        $this->form_validation->set_rules('offset', 'Offset', 'required|integer|greater_than_equal_to[0]');
 
-        $this->output
-            ->set_content_type('application/json')
-            ->set_output(json_encode($data));
+        if ($this->form_validation->run()) {
+            $data['users'] = $this->UserModel->selectAll($limit, $offset);
+            
+            $this->output
+                ->set_status_header(HttpStatus::OK)
+                ->set_content_type('application/json')
+                ->set_output(json_encode($data));
+        } else {
+            $this->error(strip_tags(validation_errors()));
+        }
+        
     }
 }

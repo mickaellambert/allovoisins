@@ -8,5 +8,13 @@ class User extends CI_Controller
     {
         parent::__construct();
         $this->load->model('UserModel');
+        $this->load->library(['form_validation', 'HttpStatus']);
+    }
+    
+    public function error($message, $status_code = HttpStatus::BAD_REQUEST)
+    {
+        $this->output->set_status_header($status_code)
+                     ->set_content_type('application/json')
+                     ->set_output(json_encode(['status' => 'error', 'message' => $message]));
     }
 }
