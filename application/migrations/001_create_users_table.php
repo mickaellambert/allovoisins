@@ -43,6 +43,7 @@ class Migration_Create_users_table extends CI_Migration
             'state' => [
                 'type' => 'VARCHAR',
                 'constraint' => '100',
+                'null' => TRUE,
             ],
             'postal_code' => [
                 'type' => 'VARCHAR',
