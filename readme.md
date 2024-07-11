@@ -42,4 +42,10 @@ Naviguez vers le répertoire racine du projet et exécutez la commande suivante 
 php index.php cli/migrate
 ```
 
+### 6. Générer les données
 
+Afin de faciliter l'utilisation et le test de l'application, des fausses données peuvent être ajoutées facilement. Exécutez la commande suivante : 
+
+```sh
+php index.php cli/fixtures
+```
