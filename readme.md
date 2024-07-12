@@ -4,7 +4,7 @@ Ce projet utilise CodeIgniter 3 avec des migrations pour gérer la base de donn�
 
 ## Prérequis
 
-- PHP >= 7.2
+- PHP >= 8.3
 - Composer
 - Serveur MySQL
 
