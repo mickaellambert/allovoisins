@@ -16,7 +16,7 @@ Clonez le dépôt sur votre machine locale :
 
 ```sh
 git clone git@github.com:mickaellambert/allovoisins.git
-cd projet-codeigniter
+cd allovoisins
 ```
 
 ### 2. Installer les dépendances
